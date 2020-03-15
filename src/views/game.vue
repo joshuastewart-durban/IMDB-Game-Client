@@ -2,7 +2,7 @@
   <div>
     <h1>Answer the questions and Win!</h1>
     <br>
-    <h2>What year was {{  }} released in?</h2>
+    <h2>What year was {{ }} released in?</h2>
   </div>
 </template>
 

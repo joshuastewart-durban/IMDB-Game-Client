@@ -4,17 +4,29 @@
       <h1>Welcome to movie trivia!</h1>
       <h3>Would you like to start a new game?</h3>
       <p>Enter your name below.</p>
-      <input v-model="name" type="text" />
-      <br />
-      <button v-if="name" @click="createGame">
+      <input
+        v-model="name"
+        type="text"
+      >
+      <br>
+      <button
+        v-if="name"
+        @click="createGame"
+      >
         Start game
       </button>
     </div>
     <div>
       <h3>Or join a game, enter the game code.</h3>   
-      <input v-model="gameId" type="text" />
-      <br />
-      <button v-if="name" @click="createGame">
+      <input
+        v-model="gameId"
+        type="text"
+      >
+      <br>
+      <button
+        v-if="name"
+        @click="createGame"
+      >
         Join game
       </button>
     </div>
