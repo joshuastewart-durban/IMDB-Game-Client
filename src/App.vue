@@ -1,14 +1,23 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <NavBar></NavBar>
+    <router-view />
   </div>
 </template>
 
+<script>
+import NavBar from '@/components/navbar'
+export default {
+  name: "App",
+  components:{
+    NavBar
+}
+}
+</script>
+
 <style lang="scss">
+@import "node_modules/bootstrap/scss/bootstrap";
+@import "node_modules/bootstrap-vue/src/index.scss";
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
