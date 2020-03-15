@@ -15,8 +15,8 @@ const routes = [
     path:"/game",
     name: "Game",
     component: Game,
-    props:(gameId)=>({
-      gameId: gameId
+    props:(route)=>({
+      gameId: route.params.gameId
     })
   }
 ];
