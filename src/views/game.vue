@@ -3,12 +3,14 @@
     <span>Game code: {{ gameId }}</span>
     <h1>Answer the questions and Win!</h1>
     <br />
-    <h2>What year was {{}} released in?</h2>
+    <h2>What year was {{question.title}} released in?</h2>
+    <b-button @click="endGame">End game</b-button>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
+import router from "@/router";
 
 export default {
   name: "Game",
@@ -19,8 +21,8 @@ export default {
       required: true
     },
     name: {
-      type: String,
-      required: true
+      required: false,
+      type: String
     }
   },
   data() {
@@ -35,8 +37,20 @@ export default {
     // Fired when the server sends something on the "messageChannel" channel.
     messageChannel(data) {
       this.socketMessage = data;
+    },
+    playerOne(data) {
+        this.question = data.question
+    },
+    playerTwo(data) {
+        this.question = data.question
     }
   },
-  methods: {}
+  methods: {
+    endGame() {
+      router.push({
+        name: "SetupGame"
+      });
+    }
+  }
 };
 </script>

@@ -1,78 +1,69 @@
 <template>
-  <b-container class="home">
-    <b-row class="setup-container">
-      <b-col>
-        <h1>Welcome to movie trivia!</h1>
-        <h3>Would you like to start a new game?</h3>
-        <p>Enter your name below.</p>
-        <input v-model="name" type="text" />
-        <br />
-        <button v-if="name" @click="createGame">
-          Start game
-        </button>
-      </b-col>
-    </b-row>
-    <b-row>
-      <b-col>
-        <h3>Or join a game</h3>
-        <p>Enter the game code</p>
-        <input v-model="existingGameId" type="text" />
-        <p>Enter your name below.</p>
-        <input v-model="name" type="text" />
-        <br />
-        <button v-if="existingGameId && name" @click="joinGame">
-          Join game
-        </button>
-      </b-col>
-    </b-row>
-  </b-container>
+  <div>
+    <b-container class="home">
+      <h1>Welcome to movie trivia!</h1>
+      <b-row v-if="!join && !start">
+        <b-col>
+          <h3>Would you like to start a new game?</h3>
+          <b-button @click="startGame">
+            Start game
+          </b-button>
+        </b-col>
+        <b-col>
+          <h3>Or join a game</h3>
+          <b-button @click="joinGame">
+            Join game
+          </b-button>
+        </b-col>
+      </b-row>
+      <startGame v-if="start" />
+      <joinGame v-if="join" />
+      <b-row v-if="join || start">
+        <h3>You can go back if you want to.</h3>
+        <b-col>
+          <b-button @click="reset">
+            Back
+          </b-button>
+        </b-col>
+      </b-row>
+    </b-container>
+  </div>
 </template>
 
 <script>
-import router from "@/router";
+import joinGame from "@/components/join-game";
+import startGame from "@/components/start-game";
 
 export default {
   name: "SetupGame",
-  components: {},
+  components: {
+    joinGame,
+    startGame
+  },
   data() {
     return {
-      socketMessage: "",
-      newGameId: null,
-      existingGameId: null,
-      name: ""
-    };
+      join: false,
+      start: false
+      };
   },
-
-  sockets: {
-    // Fired when the server sends something on the "messageChannel" channel.
-    messageChannel(data) {
-      this.socketMessage = data;
-    },
-    newGame(data) {
-      console.log(data, "newGame");
-      this.newGameId = data.gameId;
-      if (data.gameId)
-        router.push({ name: "Game", params: { gameId: this.newGameId } });
-    }
-  },
-
   methods: {
-    createGame() {
-      // Send the "createGame" event to the server.
-      this.$socket.emit("createGame", { name: this.name });
-    },
     joinGame() {
-      // Send the "createGame" event to the server.
-      this.$socket.emit("joinGame", {
-        name: this.name,
-        game: this.existingGameId
-      });
+      this.start = false;
+      this.join = true;
+    },
+    startGame() {
+      this.start = true;
+      this.join = false;
+    },
+    reset() {
+      this.start = false;
+      this.join = false;
     }
   }
 };
 </script>
-<style lang="scss" scoped>
-.setup-container {
+<style lang="scss">
+.home {
   padding-top: 100px;
 }
 </style>
