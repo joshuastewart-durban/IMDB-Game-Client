@@ -12,8 +12,8 @@
           </b-button>
         </b-col>
       </b-row>
-      <b-row v-else>
-        <b-spinner type="grow" label="Spinning" />
+      <b-row style="margin:auto;" v-else>
+        <b-spinner class="spinner-size" type="grow" label="Spinning" />
       </b-row>
     </div>
     <b-row v-else>
@@ -33,7 +33,6 @@ export default {
     return {
       socketMessage: "",
       newGameId: null,
-      existingGameId: null,
       name: "",
       loading: false,
       error: {
@@ -53,7 +52,11 @@ export default {
       if (data.gameId)
         router.push({
           name: "Game",
-          params: { player: "playerOne", gameId: this.newGameId }
+          params: {
+            playerId: "playerOne",
+            gameId: this.newGameId,
+            name: this.name
+          }
         });
     },
     error(data) {
@@ -70,3 +73,9 @@ export default {
   }
 };
 </script>
+<style>
+.spinner-size {
+  width: 30px;
+  height: 30px;
+}
+</style>

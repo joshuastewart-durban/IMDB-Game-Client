@@ -36,7 +36,11 @@ export default {
       if (data.gameId)
         router.push({
           name: "Game",
-          params: { player: "playerTwo", gameId: this.existingGameId }
+          params: {
+            playerId: "playerTwo",
+            gameId: this.existingGameId,
+            name: this.name
+          }
         });
     }
   },

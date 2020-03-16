@@ -16,7 +16,9 @@ const routes = [
     name: "Game",
     component: Game,
     props:(route)=>({
-      gameId: route.params.gameId
+      gameId: route.params.gameId,
+      playerId: route.params.playerId,
+      name: route.params.name
     })
   }
 ];
