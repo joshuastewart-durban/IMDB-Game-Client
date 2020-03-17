@@ -38,4 +38,8 @@ export default {
     }
   }
 }
+
+button{
+  background-color: #25A2B8 !important;
+}
 </style>

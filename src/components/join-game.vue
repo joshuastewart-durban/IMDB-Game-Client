@@ -1,19 +1,27 @@
 <template>
   <div>
     <Error v-if="error" :message="error" />
-    <b-row v-else>
-      <b-col>
-        <h3>To start your game</h3>
+    <b-card
+      style="width:75%; margin:auto;"
+      v-else
+      title="Join Game"
+      sub-title="To start your game"
+    >
+      <b-card-text>
         <p>Enter the game code</p>
         <input v-model="existingGameId" type="text" />
         <p>Enter your name below.</p>
         <input v-model="name" type="text" />
         <br />
-        <b-button v-if="existingGameId && name" @click="joinGame">
+        <b-button
+          class="join-button"
+          v-if="existingGameId && name"
+          @click="joinGame"
+        >
           Join game
         </b-button>
-      </b-col>
-    </b-row>
+      </b-card-text>
+    </b-card>
   </div>
 </template>
 
@@ -69,3 +77,9 @@ export default {
   }
 };
 </script>
+<style scpoed lang="scss">
+.join-button{
+  margin-top: 30px;
+  float: right;
+}
+</style>

@@ -9,16 +9,16 @@
         </b-col>
       </b-row>
       <h1>Welcome to movie trivia!</h1>
-      <b-row v-if="!join && !start">
-        <b-col>
-          <h3>Would you like to start a new game?</h3>
-          <b-button @click="startGame">
+      <b-row v-if="!join && !start" class="start-row">
+        <b-col class="divider">
+          <h4>Would you like to start a new game?</h4>
+          <b-button class="component-button" @click="startGame">
             Start game
           </b-button>
         </b-col>
         <b-col>
-          <h3>Or join a game</h3>
-          <b-button @click="joinGame">
+          <h4>Or join a game</h4>
+          <b-button class="component-button" @click="joinGame">
             Join game
           </b-button>
         </b-col>
@@ -64,8 +64,23 @@ export default {
 <style lang="scss">
 .home {
   padding-top: 100px;
+  h1{
+    padding-bottom: 20px;
+  }
 }
 .back-button {
   float: left;
+  margin-bottom: 20px;;
+}
+.start-row{
+  height: 200px;
+  margin:auto;
+  padding-top: 50px;
+}
+.divider{
+  border-right: 2px solid black;
+}
+.component-button{
+  margin-top: 30px;
 }
 </style>

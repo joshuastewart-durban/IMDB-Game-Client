@@ -2,17 +2,22 @@
   <div>
     <Error v-if="error" :message="error" />
     <div v-else>
-      <b-row v-if="!loading">
-        <b-col>
-          <h3>To start your game</h3>
+      <b-card
+        style="width:75%; margin:auto; background-color: #f0f0f0;"
+        v-if="!loading"
+        title="Start a new game"
+        sub-title="To start your game"
+      >
+        <b-card-text>
           <p>Enter your name below.</p>
           <input v-model="name" type="text" />
           <br />
-          <b-button v-if="name" @click="createGame">
+          <b-button v-if="name" class="start-button" @click="createGame">
             Start game
           </b-button>
-        </b-col>
-      </b-row>
+        </b-card-text>
+      </b-card>
+
       <b-row class="d-flex justify-content-center" v-else>
         <b-spinner class="spinner-size mx-auto" type="grow" label="Spinning" />
       </b-row>
@@ -75,5 +80,12 @@ export default {
   width: 6rem;
   height: 6rem;
   margin: 100px;
+}
+.start-button{
+  margin-top: 30px;
+  float:right;
+}
+.component-button{
+  margin-top: 30px;
 }
 </style>
