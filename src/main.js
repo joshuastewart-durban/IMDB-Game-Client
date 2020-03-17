@@ -10,8 +10,8 @@ import VueSocketIO from 'vue-socket.io';
 
 // Now setup our socket and vuex configuration
 Vue.use(new VueSocketIO({
-  debug: true,
-  connection: 'http://localhost:4000',
+  // debug: true,
+  connection: 'https://imdb-game.azurewebsites.net',
   options: {} //Optional options
 }))
 Vue.config.productionTip = false;
