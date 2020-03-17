@@ -51,7 +51,6 @@ export default {
         });
     },
     disconnected(data) {
-      console.log(data);
       this.error = data.message;
     },
     err(data) {
