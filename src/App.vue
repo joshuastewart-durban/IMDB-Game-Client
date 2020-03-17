@@ -46,4 +46,9 @@ input {
   width: 50% !important;
   margin: auto !important;
 }
+@media screen and (max-width: "600px") {
+  input {
+    width: 85% !important;
+  }
+}
 </style>

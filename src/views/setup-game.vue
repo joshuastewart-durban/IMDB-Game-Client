@@ -11,17 +11,17 @@
       <h1>Welcome to movie trivia!</h1>
       <b-row v-if="!join && !start" class="start-row">
         <b-col class="divider">
-          <h4>Would you like to start a new game?</h4>
+          <h4>Start new game</h4>
           <b-button class="component-button" @click="startGame">
-            Start game
+            Start
           </b-button>
         </b-col>
         <b-col>
           <h4 class="sub-header-padding">
-            Or join a game
+            Join game
           </h4>
           <b-button class="component-button" @click="joinGame">
-            Join game
+            Join
           </b-button>
         </b-col>
       </b-row>

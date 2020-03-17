@@ -1,16 +1,9 @@
 <template>
   <b-container class="game">
-    <Error
-      v-if="error"
-      class="error"
-      :message="error"
-    />
+    <Error v-if="error" class="error" :message="error" />
     <div v-else>
       <h1>Answer the questions and Win!</h1>
-      <div
-        v-if="!finished"
-        class="row"
-      >
+      <div v-if="!finished" class="row">
         <div class="col-sm-6">
           <b-card>
             <b-card-text>
@@ -18,22 +11,17 @@
                 <h5 v-if="question">
                   What year was <strong>{{ question }}</strong> released in?
                 </h5>
-                <b-input
-                  class="input-padding"
-                  v-model="answer"
-                  type="number"
-                />
+                <b-input class="input-padding" v-model="answer" type="number" />
                 <div>
-                  <b-button
-                    class="submit-button"
-                    @click="submitAnswer"
-                  >Submit</b-button>
+                  <b-button class="submit-button" @click="submitAnswer"
+                    >Submit</b-button
+                  >
                 </div>
               </span>
               <p v-else>
                 Waiting for other player.
               </p>
-              <br>
+              <br />
             </b-card-text>
           </b-card>
         </div>
@@ -52,22 +40,14 @@
                 score :
                 {{ players[opponentId].score }}
               </div>
-              <b-toast
-                id="result-toast"
-                title="Well done"
-                static
-                no-auto-hide
-              >
+              <b-toast id="result-toast" title="Well done" static no-auto-hide>
                 {{ answerResult }}
               </b-toast>
             </b-card-text>
           </b-card>
         </div>
       </div>
-      <div
-        v-else
-        class="row"
-      >
+      <div v-else class="row">
         <div class="col">
           <b-card class="giphy-card">
             <b-card-body>
@@ -76,7 +56,7 @@
                 <iframe
                   src="https://giphy.com/embed/cOtvwSHKaFK3Ul1VVu"
                   frameBorder="0"
-                  class="giphy-embed"
+                  class="giphy-embed giphy"
                   allowFullScreen
                 />
               </div>
@@ -87,7 +67,7 @@
                 <iframe
                   src="https://giphy.com/embed/EndO2bvE3adMc"
                   frameBorder="0"
-                  class="giphy-embed"
+                  class="giphy-embed giphy"
                   allowFullScreen
                 />
               </div>
@@ -98,7 +78,7 @@
                 <iframe
                   src="https://giphy.com/embed/A0KitrLeiHw52"
                   frameBorder="0"
-                  class="giphy-embed"
+                  class="giphy-embed giphy"
                   allowFullScreen
                 />
               </div>
@@ -111,16 +91,12 @@
           </b-card>
         </div>
       </div>
-      <div class="row">
-        <div class="col-sm-4">
-          <b-button
-            class="end-game"
-            style="float:left;"
-            @click="endGame"
-          >
-            End game
-          </b-button>
-        </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-4">
+        <b-button class="end-game" style="float:left;" @click="endGame">
+          End game
+        </b-button>
       </div>
     </div>
   </b-container>
@@ -286,8 +262,11 @@ export default {
   .giphy-card {
     height: 25rem !important;
   }
-.input-padding{
+  .giphy {
+    width: 100%;
+  }
+  .input-padding {
     margin-top: 30px !important;
-}
+  }
 }
 </style>
