@@ -10,9 +10,9 @@
     >
       <b-card-text>
         <p>Enter the game code</p>
-        <input v-model="existingGameId" type="text" />
+        <b-input v-model="existingGameId" type="text" />
         <p>Enter your name below.</p>
-        <input v-model="name" type="text" />
+        <b-input v-model="name" type="text" />
         <br />
         <b-button
           class="join-button"

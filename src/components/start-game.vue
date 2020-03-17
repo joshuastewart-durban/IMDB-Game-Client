@@ -11,7 +11,7 @@
       >
         <b-card-text>
           <p>Enter your name below.</p>
-          <input v-model="name" type="text" />
+          <b-input v-model="name" type="text" />
           <br />
           <b-button v-if="name" class="start-button" @click="createGame">
             Start game

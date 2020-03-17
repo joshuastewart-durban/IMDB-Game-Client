@@ -11,7 +11,7 @@
                 <h5 v-if="question">
                   What year was <strong>{{ question }}</strong> released in?
                 </h5>
-                <input v-model="answer" />
+                <b-input v-model="answer" />
                 <div>
                   <b-button class="submit-button" @click="submitAnswer"
                     >Submit</b-button
@@ -249,17 +249,17 @@ export default {
     padding-top: 200px;
   }
   .submit-button {
-    margin-top: 2rem;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
     float: right;
   }
   .end-game {
     margin-top: 15%;
   }
-  .giphy-card{
+  .giphy-card {
     height: 25rem !important;
   }
-  .giphy-embed{
-    width: 25rem;
-  }
+
 }
 </style>

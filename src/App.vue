@@ -6,13 +6,13 @@
 </template>
 
 <script>
-import NavBar from '@/components/navbar'
+import NavBar from "@/components/navbar";
 export default {
   name: "App",
-  components:{
+  components: {
     NavBar
-}
-}
+  }
+};
 </script>
 
 <style lang="scss">
@@ -39,7 +39,11 @@ export default {
   }
 }
 
-button{
-  background-color: #25A2B8 !important;
+button {
+  background-color: #25a2b8 !important;
+}
+input {
+  width: 50% !important;
+  margin: auto !important;
 }
 </style>
