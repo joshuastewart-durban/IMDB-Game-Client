@@ -19,6 +19,7 @@
                   What year was <strong>{{ question }}</strong> released in?
                 </h5>
                 <b-input
+                  class="input-padding"
                   v-model="answer"
                   type="number"
                 />
@@ -285,6 +286,8 @@ export default {
   .giphy-card {
     height: 25rem !important;
   }
-
+.input-padding{
+    margin-top: 30px !important;
+}
 }
 </style>
