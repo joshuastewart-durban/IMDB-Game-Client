@@ -1,6 +1,7 @@
 <template>
   <div>
-    <div v-if="!error.state">
+    <Error v-if="error" :message="error" />
+    <div v-else>
       <b-row v-if="!loading">
         <b-col>
           <h3>To start your game</h3>
@@ -12,33 +13,29 @@
           </b-button>
         </b-col>
       </b-row>
-      <b-row style="margin:auto;" v-else>
-        <b-spinner class="spinner-size" type="grow" label="Spinning" />
+      <b-row class="d-flex justify-content-center" v-else>
+        <b-spinner class="spinner-size mx-auto" type="grow" label="Spinning" />
       </b-row>
     </div>
-    <b-row v-else>
-      <b-col>
-        <h3>{{ error.message }}</h3>
-      </b-col>
-    </b-row>
   </div>
 </template>
 
 <script>
 import router from "@/router";
+import Error from "@/components/error";
 
 export default {
   name: "StartGame",
+  components: {
+    Error
+  },
   data() {
     return {
       socketMessage: "",
       newGameId: null,
       name: "",
       loading: false,
-      error: {
-        message: "",
-        state: false
-      }
+      error: ""
     };
   },
   sockets: {
@@ -59,8 +56,8 @@ export default {
           }
         });
     },
-    error(data) {
-      this.errorMessage = data;
+    err(data) {
+      this.error = data.message;
     }
   },
 
@@ -75,7 +72,8 @@ export default {
 </script>
 <style>
 .spinner-size {
-  width: 30px;
-  height: 30px;
+  width: 6rem;
+  height: 6rem;
+  margin: 100px;
 }
 </style>

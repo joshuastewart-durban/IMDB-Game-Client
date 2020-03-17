@@ -1,6 +1,13 @@
 <template>
   <div>
     <b-container class="home">
+      <b-row v-if="join || start">
+        <b-col>
+          <b-button class="back-button" @click="reset">
+            Back
+          </b-button>
+        </b-col>
+      </b-row>
       <h1>Welcome to movie trivia!</h1>
       <b-row v-if="!join && !start">
         <b-col>
@@ -18,14 +25,6 @@
       </b-row>
       <startGame v-if="start" />
       <joinGame v-if="join" />
-      <b-row v-if="join || start">
-        <h3>You can go back if you want to.</h3>
-        <b-col>
-          <b-button @click="reset">
-            Back
-          </b-button>
-        </b-col>
-      </b-row>
     </b-container>
   </div>
 </template>
@@ -44,7 +43,7 @@ export default {
     return {
       join: false,
       start: false
-      };
+    };
   },
   methods: {
     joinGame() {
@@ -65,5 +64,8 @@ export default {
 <style lang="scss">
 .home {
   padding-top: 100px;
+}
+.back-button {
+  float: left;
 }
 </style>

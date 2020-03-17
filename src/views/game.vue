@@ -1,32 +1,36 @@
 <template>
   <div>
-    <span>Game code: {{ gameId }}</span>
-    <h1>Answer the questions and Win!</h1>
-    <br />
-    <span v-if="question">
-      <h2 v-if="question">What year was {{ question }} released in?</h2>
-      <input v-model="answer" />
-      <b-button @click="submitAnswer">Submit</b-button>
-    </span>
-    <p v-else>Waiting for other player.</p>
-    <br />
-    <span>Your Score: {{ players[playerId].score }}</span>
-    <span>
-      {{ players[opponentId].name }} score :
-      {{ players[opponentId].score }}
-    </span>
-    <br />
-    <b-button @click="endGame">End game</b-button>
+    <Error v-if="error" :message="error" />
+    <div v-else>
+      <span>Game code: {{ gameId }}</span>
+      <h1>Answer the questions and Win!</h1>
+      <br />
+      <span v-if="question">
+        <h2 v-if="question">What year was {{ question }} released in?</h2>
+        <input v-model="answer" />
+        <b-button @click="submitAnswer">Submit</b-button>
+      </span>
+      <p v-else>Waiting for other player.</p>
+      <br />
+      <span>Your Score: {{ players[playerId].score }}</span>
+      <span>
+        {{ players[opponentId].name }} score :
+        {{ players[opponentId].score }}
+      </span>
+      <br />
+      <b-button @click="endGame">End game</b-button>
+    </div>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import router from "@/router";
+import Error from "@/components/error";
 
 export default {
   name: "Game",
-  components: {},
+  components: { Error },
   props: {
     gameId: {
       type: String,
@@ -45,10 +49,6 @@ export default {
     return {
       socketMessage: "",
       question: null,
-      score: {
-        playerOne: 0,
-        playerTwo: 0
-      },
       players: {
         playerOne: {
           score: 0,
@@ -61,7 +61,8 @@ export default {
       },
       answer: null,
       finished: false,
-      round: 1
+      round: 1,
+      error: ""
     };
   },
   sockets: {
@@ -70,12 +71,12 @@ export default {
       this.socketMessage = data;
     },
     playerOne(data) {
-      this.playerId = "playerOne";
       this.question = data.question;
+      this.players = data.players;
     },
     playerTwo(data) {
-      this.playerId = "playerTwo";
       this.question = data.question;
+      this.players = data.players;
     },
     turnPlayed(data) {
       this.players[data.playerId].score = data.score;
@@ -83,8 +84,11 @@ export default {
         this.question = data.question;
       }
     },
-    winner(data) {
+    result(data) {
       console.log(data);
+    },
+    err(data) {
+      this.error = data.message;
     }
   },
   computed: {
@@ -95,6 +99,18 @@ export default {
       return "playerOne";
     }
   },
+  watch: {
+    gameId(value) {
+      if (value === undefined) {
+        this.endGame();
+      }
+    }
+  },
+  mounted() {
+    if (this.gameId === undefined) {
+      this.endGame();
+    }
+  },
   methods: {
     endGame() {
       router.push({
@@ -102,6 +118,7 @@ export default {
       });
     },
     submitAnswer() {
+      console.log("Player", this.playerId);
       this.$socket.emit("playTurn", {
         game: this.gameId,
         playerId: this.playerId,
