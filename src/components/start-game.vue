@@ -1,26 +1,43 @@
 <template>
   <div>
-    <Error v-if="error" :message="error" />
+    <Error
+      v-if="error"
+      :message="error"
+    />
     <div v-else>
       <b-card
-        style="width:75%; margin:auto;"
         v-if="!loading"
+        style="width:75%; margin:auto;"
         title="Start a new game"
         sub-title="To start your game"
         class="shadow-sm"
       >
         <b-card-text>
           <p>Enter your name below.</p>
-          <b-input v-model="name" type="text" />
-          <br />
-          <b-button v-if="name" class="start-button" @click="createGame">
+          <b-input
+            v-model="name"
+            type="text"
+          />
+          <br>
+          <b-button
+            v-if="name"
+            class="start-button"
+            @click="createGame"
+          >
             Start game
           </b-button>
         </b-card-text>
       </b-card>
 
-      <b-row class="d-flex justify-content-center" v-else>
-        <b-spinner class="spinner-size mx-auto" type="grow" label="Spinning" />
+      <b-row
+        v-else
+        class="d-flex justify-content-center"
+      >
+        <b-spinner
+          class="spinner-size mx-auto"
+          type="grow"
+          label="Spinning"
+        />
       </b-row>
     </div>
   </div>

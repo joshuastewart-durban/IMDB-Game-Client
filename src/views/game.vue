@@ -1,9 +1,16 @@
 <template>
   <b-container class="game">
-    <Error class="error" v-if="error" :message="error" />
+    <Error
+      v-if="error"
+      class="error"
+      :message="error"
+    />
     <div v-else>
       <h1>Answer the questions and Win!</h1>
-      <div class="row" v-if="!finished">
+      <div
+        v-if="!finished"
+        class="row"
+      >
         <div class="col-sm-6">
           <b-card>
             <b-card-text>
@@ -11,15 +18,21 @@
                 <h5 v-if="question">
                   What year was <strong>{{ question }}</strong> released in?
                 </h5>
-                <b-input type="number" v-model="answer" />
+                <b-input
+                  v-model="answer"
+                  type="number"
+                />
                 <div>
-                  <b-button class="submit-button" @click="submitAnswer"
-                    >Submit</b-button
-                  >
+                  <b-button
+                    class="submit-button"
+                    @click="submitAnswer"
+                  >Submit</b-button>
                 </div>
               </span>
-              <p v-else>Waiting for other player.</p>
-              <br />
+              <p v-else>
+                Waiting for other player.
+              </p>
+              <br>
             </b-card-text>
           </b-card>
         </div>
@@ -38,14 +51,22 @@
                 score :
                 {{ players[opponentId].score }}
               </div>
-              <b-toast id="result-toast" title="Well done" static no-auto-hide>
+              <b-toast
+                id="result-toast"
+                title="Well done"
+                static
+                no-auto-hide
+              >
                 {{ answerResult }}
               </b-toast>
             </b-card-text>
           </b-card>
         </div>
       </div>
-      <div v-else class="row">
+      <div
+        v-else
+        class="row"
+      >
         <div class="col">
           <b-card class="giphy-card">
             <b-card-body>
@@ -56,7 +77,7 @@
                   frameBorder="0"
                   class="giphy-embed"
                   allowFullScreen
-                ></iframe>
+                />
               </div>
               <div v-else-if="loser">
                 <h3>
@@ -67,7 +88,7 @@
                   frameBorder="0"
                   class="giphy-embed"
                   allowFullScreen
-                ></iframe>
+                />
               </div>
               <div v-else-if="draw">
                 <h3>
@@ -78,7 +99,7 @@
                   frameBorder="0"
                   class="giphy-embed"
                   allowFullScreen
-                ></iframe>
+                />
               </div>
               <div v-else>
                 <h3>Waiting for your opponent to finish...</h3>
@@ -91,9 +112,13 @@
       </div>
       <div class="row">
         <div class="col-sm-4">
-          <b-button class="end-game" style="float:left;" @click="endGame"
-            >End game</b-button
+          <b-button
+            class="end-game"
+            style="float:left;"
+            @click="endGame"
           >
+            End game
+          </b-button>
         </div>
       </div>
     </div>

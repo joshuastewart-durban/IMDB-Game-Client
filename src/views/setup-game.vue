@@ -3,22 +3,36 @@
     <b-container class="home">
       <b-row v-if="join || start">
         <b-col>
-          <b-button class="back-button" @click="reset">
+          <b-button
+            class="back-button"
+            @click="reset"
+          >
             Back
           </b-button>
         </b-col>
       </b-row>
       <h1>Welcome to movie trivia!</h1>
-      <b-row v-if="!join && !start" class="start-row">
+      <b-row
+        v-if="!join && !start"
+        class="start-row"
+      >
         <b-col class="divider">
           <h4>Would you like to start a new game?</h4>
-          <b-button class="component-button" @click="startGame">
+          <b-button
+            class="component-button"
+            @click="startGame"
+          >
             Start game
           </b-button>
         </b-col>
         <b-col>
-          <h4 class="sub-header-padding">Or join a game</h4>
-          <b-button class="component-button" @click="joinGame">
+          <h4 class="sub-header-padding">
+            Or join a game
+          </h4>
+          <b-button
+            class="component-button"
+            @click="joinGame"
+          >
             Join game
           </b-button>
         </b-col>
