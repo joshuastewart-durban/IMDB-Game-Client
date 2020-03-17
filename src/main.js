@@ -11,7 +11,7 @@ import VueSocketIO from 'vue-socket.io';
 
 // Now setup our socket and vuex configuration
 Vue.use(new VueSocketIO({
-  // debug: true,
+  debug: true,
   connection: environment.depUrl(),
   options: {} //Optional options
 }))

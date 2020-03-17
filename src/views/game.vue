@@ -39,7 +39,7 @@
                 {{ players[opponentId].score }}
               </div>
               <b-toast id="result-toast" title="Well done" static no-auto-hide>
-                Hello, world! This is a toast message.
+                {{ answerResult }}
               </b-toast>
             </b-card-text>
           </b-card>
@@ -47,20 +47,38 @@
       </div>
       <div v-else class="row">
         <div class="col">
-          <b-card>
+          <b-card class="giphy-card">
             <b-card-body>
               <div v-if="winner">
                 <h3>Congratulations you are the winner!</h3>
+                <iframe
+                  src="https://giphy.com/embed/cOtvwSHKaFK3Ul1VVu"
+                  frameBorder="0"
+                  class="giphy-embed"
+                  allowFullScreen
+                ></iframe>
               </div>
               <div v-else-if="loser">
                 <h3>
                   Sorry you have lost!
                 </h3>
+                <iframe
+                  src="https://giphy.com/embed/EndO2bvE3adMc"
+                  frameBorder="0"
+                  class="giphy-embed"
+                  allowFullScreen
+                ></iframe>
               </div>
               <div v-else-if="draw">
                 <h3>
                   It's a draw!
                 </h3>
+                <iframe
+                  src="https://giphy.com/embed/A0KitrLeiHw52"
+                  frameBorder="0"
+                  class="giphy-embed"
+                  allowFullScreen
+                ></iframe>
               </div>
               <div v-else>
                 <h3>Waiting for your opponent to finish...</h3>
@@ -124,7 +142,8 @@ export default {
       loser: false,
       draw: false,
       round: 1,
-      error: ""
+      error: "",
+      answerResult: ""
     };
   },
   sockets: {
@@ -147,12 +166,21 @@ export default {
         if (this.round === 8) {
           this.finished = true;
         } else {
+          this.showToast(data.answer);
           ++this.round;
         }
       }
     },
     result(data) {
-      alert(data);
+      if (data.draw) {
+        this.draw = true;
+      } else {
+        if (data.winnerId === this.playerId) {
+          this.winner = true;
+        } else {
+          this.loser = true;
+        }
+      }
     },
     err(data) {
       this.error = data.message;
@@ -183,6 +211,16 @@ export default {
       router.push({
         name: "SetupGame"
       });
+    },
+    showToast(answer) {
+      this.$bvToast.toast(
+        `Your answer is ${answer ? "correct!" : "incorrect!"}`,
+        {
+          title: "Answer",
+          autoHideDelay: 2000,
+          appendToast: false
+        }
+      );
     },
     submitAnswer() {
       if (this.round < 9) {
@@ -216,6 +254,12 @@ export default {
   }
   .end-game {
     margin-top: 15%;
+  }
+  .giphy-card{
+    height: 25rem !important;
+  }
+  .giphy-embed{
+    width: 25rem;
   }
 }
 </style>
