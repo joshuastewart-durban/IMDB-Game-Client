@@ -25,6 +25,26 @@
       </b-row>
       <startGame v-if="start" />
       <joinGame v-if="join" />
+      <b-row>
+        <b-col class="card-padding-top">
+          <b-card
+            style="width:80%; margin:auto;"
+            title="Game rules"
+            class="shadow-sm"
+          >
+            <b-card-text>
+              <p>
+                You are given a random movie title from IMDB’s top 250 list and asked to guess
+                the year it was released. <br>
+                A game consists of 8 rounds with 5
+                points allocated for a correct answer and -3 for an incorrect
+                answer. <br>The player with the highest score at the end of the game
+                wins.
+              </p>
+            </b-card-text>
+          </b-card>
+        </b-col>
+      </b-row>
     </b-container>
   </div>
 </template>
@@ -83,6 +103,10 @@ export default {
 }
 .component-button {
   margin-top: 30px;
+}
+.card-padding-top{
+  padding-top: 50px;
+  padding-bottom: 50px;
 }
 @media screen and (max-width: "800px") {
   .sub-header-padding {
