@@ -1,7 +1,11 @@
 <template>
   <b-row>
     <b-col>
-      <img class="error-icon" src="@/assets/error.svg" alt="Error svg" />
+      <img
+        class="error-icon"
+        src="@/assets/error.svg"
+        alt="Error svg"
+      >
       <h3>{{ message }}</h3>
     </b-col>
   </b-row>

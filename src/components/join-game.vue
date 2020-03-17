@@ -1,6 +1,9 @@
 <template>
   <div>
-    <Error v-if="error" :message="error" />
+    <Error
+      v-if="error"
+      :message="error"
+    />
     <b-card
       v-else
       style="width:75%; margin:auto;"
@@ -10,13 +13,19 @@
     >
       <b-card-text>
         <p>Enter the game code</p>
-        <b-input v-model="existingGameId" type="text" />
+        <b-input
+          v-model="existingGameId"
+          type="text"
+        />
         <p>Enter your name below.</p>
-        <b-input v-model="name" type="text" />
-        <br />
+        <b-input
+          v-model="name"
+          type="text"
+        />
+        <br>
         <b-button
-          class="join-button"
           v-if="existingGameId && name"
+          class="join-button"
           @click="joinGame"
         >
           Join game
@@ -31,6 +40,9 @@ import router from "@/router";
 import Error from "@/components/error";
 export default {
   name: "JoinGame",
+  components: {
+    Error
+  },
   data() {
     return {
       socketMessage: "",
@@ -38,9 +50,6 @@ export default {
       name: "",
       error: ""
     };
-  },
-  components: {
-    Error
   },
   sockets: {
     // Fired when the server sends something on the "messageChannel" channel.
