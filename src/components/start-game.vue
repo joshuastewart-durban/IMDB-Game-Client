@@ -3,10 +3,11 @@
     <Error v-if="error" :message="error" />
     <div v-else>
       <b-card
-        style="width:75%; margin:auto; background-color: #f0f0f0;"
+        style="width:75%; margin:auto;"
         v-if="!loading"
         title="Start a new game"
         sub-title="To start your game"
+        class="shadow-sm"
       >
         <b-card-text>
           <p>Enter your name below.</p>

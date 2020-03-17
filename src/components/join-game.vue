@@ -2,10 +2,11 @@
   <div>
     <Error v-if="error" :message="error" />
     <b-card
-      style="width:75%; margin:auto;"
       v-else
+      style="width:75%; margin:auto;"
       title="Join Game"
-      sub-title="To start your game"
+      sub-title="To join a game"
+      class="shadow-sm"
     >
       <b-card-text>
         <p>Enter the game code</p>
@@ -78,7 +79,7 @@ export default {
 };
 </script>
 <style scpoed lang="scss">
-.join-button{
+.join-button {
   margin-top: 30px;
   float: right;
 }
