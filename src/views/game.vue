@@ -11,7 +11,7 @@
                 <h5 v-if="question">
                   What year was <strong>{{ question }}</strong> released in?
                 </h5>
-                <b-input v-model="answer" />
+                <b-input type="number" v-model="answer" />
                 <div>
                   <b-button class="submit-button" @click="submitAnswer"
                     >Submit</b-button
