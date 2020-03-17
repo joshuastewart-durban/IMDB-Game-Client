@@ -85,7 +85,7 @@ export default {
       }
     },
     result(data) {
-      console.log(data);
+      alert(data);
     },
     err(data) {
       this.error = data.message;
@@ -118,7 +118,6 @@ export default {
       });
     },
     submitAnswer() {
-      console.log("Player", this.playerId);
       this.$socket.emit("playTurn", {
         game: this.gameId,
         playerId: this.playerId,
